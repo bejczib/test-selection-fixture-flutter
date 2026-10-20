@@ -10,3 +10,6 @@ int clampPercent(int value) {
 
 /// Formats a greeting for [name].
 String greeting(String name) => 'Hello, ${name.trim()}!';
+
+/// Formats a farewell for [name].
+String farewell(String name) => 'Bye, ${name.trim()}!';
