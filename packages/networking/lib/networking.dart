@@ -14,3 +14,6 @@ class Endpoint {
 
 /// The payload the greeting endpoint would return for [name].
 String greetingPayload(String name) => '{"message":"${greeting(name)}"}';
+
+/// The payload the farewell endpoint would return for [name].
+String farewellPayload(String name) => '{"message":"Bye, ${name.trim()}!"}';
