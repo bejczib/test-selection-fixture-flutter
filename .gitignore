@@ -1,0 +1,6 @@
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+# Packages do not commit their lock file; the app does (a pubspec.lock change is a full-run rule).
+packages/*/pubspec.lock

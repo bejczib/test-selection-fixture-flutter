@@ -1,0 +1,17 @@
+name: feature
+description: A widget that shows the greeting and where it comes from.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  networking:
+    path: ../networking
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
