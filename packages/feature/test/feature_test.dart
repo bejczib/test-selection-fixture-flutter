@@ -14,5 +14,6 @@ void main() {
 
     expect(find.textContaining('Hello, Ada!'), findsOneWidget);
     expect(find.text('https://example.com/greet'), findsOneWidget);
+    expect(find.byType(Card), findsOneWidget);
   });
 }
