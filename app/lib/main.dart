@@ -9,7 +9,7 @@ class FixtureApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fixture',
+      title: 'Fixture app',
       home: Scaffold(
         appBar: AppBar(title: const Text('Fixture')),
         body: Center(
