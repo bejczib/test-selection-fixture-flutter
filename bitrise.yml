@@ -64,3 +64,30 @@ workflows:
             #!/usr/bin/env bash
             if [ -n "${BITRISE_TEST_SELECTION_PATH:-}" ]; then cat "$BITRISE_TEST_SELECTION_PATH"; fi
     - deploy-to-bitrise-io@2: {}
+
+  # Shadow release check: the backend config injected as a workflow env, the test steps from their
+  # test-selection-shadow branches. Every test runs; each step writes test-selection.json.
+  shadow_tests:
+    envs:
+    - BITRISE_TEST_SELECTION_CONFIG_JSON: '{"mode":"shadow","base_ref":"main"}'
+    steps:
+    - git-clone@8: {}
+    - flutter-installer@0:
+        inputs:
+        - is_update: 'false'
+    - git::https://github.com/bitrise-steplib/bitrise-step-flutter-test.git@test-selection-shadow:
+        title: Flutter Test app (shadow branch)
+        inputs:
+        - project_location: "$BITRISE_SOURCE_DIR/app"
+    - git::https://github.com/bitrise-steplib/bitrise-step-flutter-test.git@test-selection-shadow:
+        title: Flutter Test core (shadow branch)
+        inputs:
+        - project_location: "$BITRISE_SOURCE_DIR/packages/core"
+    - script@1:
+        title: Show shadow reports
+        is_always_run: true
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            find "$BITRISE_TEST_DEPLOY_DIR" -name test-selection.json | sort | while read -r f; do echo "== $f"; cat "$f"; echo; done
+    - deploy-to-bitrise-io@2: {}
