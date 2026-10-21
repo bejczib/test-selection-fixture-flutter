@@ -11,4 +11,6 @@ Workflows:
 - `full_tests` – baseline, `flutter test` in every package.
 - `selective_tests` – Test Selection + Flutter Test (`test-selection` branch) with `on_empty_selection: skip`; pushes trigger this.
 
-Scenario branches: `try/core`, `try/networking`, `try/feature-tests`, `try/app`, `try/lock` (the app's `pubspec.lock`, a full-run rule).
+Scenario branches: `try/core`, `try/networking`, `try/feature-tests`, `try/app`, `try/lock` (the app's `pubspec.lock`, a full-run rule),
+`try/hidden-dep` (changes `packages/networking/lib/greeting_prefix.txt`, which core's test reads behind the graph's back: the
+selection skips core and core fails, so the shadow run reports a missed failure).
